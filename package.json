@@ -1,0 +1,1 @@
+{"name":"zsuite-marketing-site","version":"1.0.0","private":true,"description":"Marketing-only Z-Suite GitHub Pages site","scripts":{"test":"python3 -m unittest discover -s tests -v","test:browser":"playwright test"},"devDependencies":{"@axe-core/playwright":"4.11.1","@playwright/test":"1.64.1"}}
