@@ -44,6 +44,8 @@ GitHub Pages uses Actions. A push to `main` runs the static checks and browser s
 
 ## Copy and commercial claims
 
-The initial content is based on the reviewed October 27, 2026 capability baseline and matching capability guide. Delivery means implemented scope, not automatic availability in every deployment. Keep configuration prerequisites, read-only boundaries and payroll/offline limitations accurate. Do not add customer logos, testimonials, savings statistics, certification claims, prices, dates or feature availability without supporting approval and evidence.
+The current content and matching 10-page capability guide are reviewed through October 28, 2026, pinned to application main `0aab7a9c8a24b80325bb28f1b45eb3414d44048a`. This refresh moves existing daily-JSA Office review/reporting and connected asset/conditions scope out of the roadmap, based on merged implementation and source verification; no new roadmap themes were added. Native/offline architecture acceptance is not implementation. NWS/AirNow lookup remains setup/coverage-limited, and the first key-enabled AirNow deployment needs live validation.
+
+Delivery means implemented scope, not automatic availability in every deployment. Keep configuration prerequisites, read-only boundaries and payroll/offline limitations accurate. Do not add customer logos, testimonials, savings statistics, certification claims, prices, dates or feature availability without supporting approval and evidence.
 
 Planned work is separated from delivered scope and carries no release-date promise. Review the page and replace the guide together when product scope changes. Before a public marketing launch, approve final copy, review search/indexing posture, select a domain and decide whether to add contact details or a lead flow. None is configured in this preview.

@@ -38,4 +38,12 @@ class SiteTests(unittest.TestCase):
   for forbidden in ['staging.zsuite','paperclip','192.168.','mailto:','calendly','ZSU-','github.com/Zim-Industries/zsuite/blob']:
    self.assertNotIn(forbidden,text)
   self.assertIn('No roadmap dates are committed.',text)
+ def test_completed_jsa_work_is_described_as_delivered_not_future_scope(self):
+  text=(ROOT/'docs/index.html').read_text()
+  for delivered in ['project bundles of up to 31 days','Daily JSA checks','NWS','AirNow']:
+   self.assertIn(delivered,text)
+  for stale in ['daily-JSA program is partially delivered and remains in review','Dependent JSA asset/conditions follow-ups']:
+   self.assertNotIn(stale,text)
+  self.assertIn('native/offline foundations',text)
+  self.assertIn('optional Microsoft sign-in',text)
 if __name__=='__main__':unittest.main()
