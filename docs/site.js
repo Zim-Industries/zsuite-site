@@ -73,7 +73,7 @@
       observer.unobserve(entry.target);
     });
   }, { threshold: 0.08 });
-  document.querySelectorAll('.section-heading, .capability, .support-list > div, .fit-columns > div').forEach(element => {
+  document.querySelectorAll('.section-heading, .capability:not(.chapter-frame), .chapter-copy, .support-list > div, .fit-columns > div').forEach(element => {
     if (element.getBoundingClientRect().top < window.innerHeight - 24) return;
     element.classList.add('reveal-ready', 'reveal-pending');
     observer.observe(element);
