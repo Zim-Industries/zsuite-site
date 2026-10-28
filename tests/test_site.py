@@ -46,4 +46,10 @@ class SiteTests(unittest.TestCase):
    self.assertNotIn(stale,text)
   self.assertIn('native/offline foundations',text)
   self.assertIn('optional Microsoft sign-in',text)
+ def test_product_presentation_is_not_a_purchase_evaluation(self):
+  text=(ROOT/'docs/index.html').read_text()
+  for phrase in ['Buy for the work you do','Not a roadmap promise','A strong fit to evaluate','purchase decisions','commercial scope','support terms','You want','You need','Is it a fit?']:
+   self.assertNotIn(phrase,text)
+  for phrase in ['What the platform does today.','Where it goes next.','Product scope','Internal product presentation']:
+   self.assertIn(phrase,text)
 if __name__=='__main__':unittest.main()

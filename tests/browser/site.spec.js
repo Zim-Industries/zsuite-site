@@ -9,7 +9,7 @@ test('mobile navigation expands, follows a link and closes with Escape', async (
   await expect(menu).toHaveAttribute('aria-expanded','false');
   await menu.click();
   await expect(menu).toHaveAttribute('aria-expanded','true');
-  await page.getByRole('navigation').getByRole('link',{name:'Is it a fit?'}).click();
+  await page.getByRole('navigation').getByRole('link',{name:'Product scope'}).click();
   await expect(menu).toHaveAttribute('aria-expanded','false');
   await menu.click();await page.keyboard.press('Escape');
   await expect(menu).toHaveAttribute('aria-expanded','false');
