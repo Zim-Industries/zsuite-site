@@ -7,7 +7,7 @@ test('header wordmark animates once then holds, including after hover and naviga
   await expect.poll(()=>logo.evaluate(img=>img.complete && img.naturalWidth>0)).toBe(true);
   expect(await logo.evaluate(img=>img.currentSrc)).toContain('zsuite-wordmark-anim.webp');
   const opening=await logo.screenshot({animations:'allow'});
-  await page.waitForTimeout(4600);
+  await page.waitForTimeout(3000);
   const finished=await logo.screenshot({animations:'allow'});
   expect(opening.equals(finished)).toBe(false);
   await page.locator('.site-header .brand').hover();

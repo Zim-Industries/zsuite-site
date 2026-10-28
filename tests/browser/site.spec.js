@@ -36,10 +36,10 @@ test('workflow tabs select panels and support keyboard navigation', async ({page
   await expect(page.getByRole('tabpanel')).toHaveCount(1);
   await tabs.nth(1).click();
   await expect(tabs.nth(1)).toHaveAttribute('aria-selected','true');
-  await expect(page.getByRole('tabpanel')).toContainText('An asset has');
+  await expect(page.getByRole('tabpanel')).toContainText('Review and book');
   await page.keyboard.press('ArrowDown');
   await expect(tabs.nth(2)).toBeFocused();
-  await expect(page.getByRole('tabpanel')).toContainText('Not just submitted.');
+  await expect(page.getByRole('tabpanel')).toContainText('Submit a form.');
   await page.keyboard.press('Home');
   await expect(tabs.nth(0)).toBeFocused();
   await page.keyboard.press('End');

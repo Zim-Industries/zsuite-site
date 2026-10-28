@@ -1,5 +1,5 @@
 """Verify the supplied logo assets actually encode finite one-shot playback."""
-import unittest
+import unittest,hashlib
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 class WordmarkTests(unittest.TestCase):
@@ -7,14 +7,19 @@ class WordmarkTests(unittest.TestCase):
   for name in ['zsuite-wordmark-anim.webp','zsuite-mark-anim.webp']:
    raw=(ROOT/'docs/assets/wordmark'/name).read_bytes()
    self.assertEqual(raw[:4],b'RIFF');self.assertEqual(raw[8:12],b'WEBP')
-   i=12;loops=None;frames=0;duration=0
+   i=12;loops=None;frames=0;duration=0;pixels=hashlib.sha256()
    while i+8<=len(raw):
     kind=raw[i:i+4];size=int.from_bytes(raw[i+4:i+8],'little');data=raw[i+8:i+8+size]
     self.assertEqual(len(data),size)
     if kind==b'ANIM':loops=int.from_bytes(data[4:6],'little')
-    if kind==b'ANMF':frames+=1;duration+=int.from_bytes(data[12:15],'little')
+    if kind==b'ANMF':frames+=1;duration+=int.from_bytes(data[12:15],'little');pixels.update(data[16:])
     i+=8+size+size%2
-   self.assertEqual(loops,1,name);self.assertGreater(frames,1);self.assertGreater(duration,2000)
+   expected={
+    'zsuite-wordmark-anim.webp':(120,2733,'14d4d175506e8b1ad08afda3cbee6d74209d051bc3bc40011afc9f0a333b0c17'),
+    'zsuite-mark-anim.webp':(65,1866,'327fb11989748f31d97ce611176dd5bf3de45a716b6a06fbaa0c32b79780d54a')
+   }[name]
+   self.assertEqual(loops,1,name)
+   self.assertEqual((frames,duration,pixels.hexdigest()),expected,'1.5x timing with every original frame preserved')
  def test_only_header_uses_animated_assets(self):
   text=(ROOT/'docs/index.html').read_text()
   header=text.split('<header',1)[1].split('</header>',1)[0]

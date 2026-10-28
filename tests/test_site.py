@@ -52,4 +52,11 @@ class SiteTests(unittest.TestCase):
    self.assertNotIn(phrase,text)
   for phrase in ['What the platform does today.','Where it goes next.','Product scope','Internal product presentation']:
    self.assertIn(phrase,text)
+ def test_copy_names_workflows_instead_of_generic_sales_slogans(self):
+  text=(ROOT/'docs/index.html').read_text()
+  self.assertNotIn('\u2014',text);self.assertNotIn('\u2013',text)
+  for stale in ['Explore Z-Suite','A better-connected','More than an','Not just submitted','The connection <span','seamless','revolutionary','cutting-edge']:
+   self.assertNotIn(stale,text)
+  for concrete in ['View capabilities','Time cards and','Equipment bookings','Daily JSAs and','does not transfer funds','require whole-company JSA read or manage access','manual entry remains available','Delivery dates for planned work are not set.']:
+   self.assertIn(concrete,text)
 if __name__=='__main__':unittest.main()

@@ -1,0 +1,37 @@
+/* Browser-native polish. No video production, dependencies, or changes to scroll mechanics. */
+:root{--motion-ease:cubic-bezier(.2,.75,.25,1);--page-progress:0}
+a[href],button,summary,[role="tab"]{cursor:pointer}button:disabled,[aria-disabled="true"]{cursor:not-allowed}
+.site-header{transition:box-shadow .3s ease}
+body.is-scrolled .site-header{box-shadow:0 8px 32px #1014170d}
+.site-header:after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--fold);transform:scaleX(var(--page-progress));transform-origin:left;pointer-events:none}
+.hero{position:relative;isolation:isolate}
+.hero-grid{position:relative;z-index:1}
+.hero:before{content:'';position:absolute;inset:-25%;pointer-events:none;background:radial-gradient(ellipse at 72% 34%,#00e6d21b,transparent 45%),radial-gradient(ellipse at 15% 80%,#00bfaf0c,transparent 40%);animation:ambient-drift 4.8s ease-out both}
+.hero:after{content:'';position:absolute;inset:0;pointer-events:none;opacity:.12;background-image:linear-gradient(#7a9a9c33 1px,transparent 1px),linear-gradient(90deg,#7a9a9c33 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse at 75% 40%,black,transparent 68%)}
+.hero-copy>*{animation:hero-enter .75s var(--motion-ease) both}
+.hero-copy>.eyebrow{animation-delay:.04s}.hero-copy>h1{animation-delay:.1s}.hero-copy>.hero-lead{animation-delay:.19s}.hero-copy>.hero-body{animation-delay:.26s}.hero-copy>.hero-actions{animation-delay:.33s}.hero-copy>.hero-footnote{animation-delay:.4s}
+.hero h1 span{text-shadow:0 0 36px #00e6d212}
+.day-story{box-shadow:0 24px 60px #00000029;transition:transform .45s var(--motion-ease),box-shadow .45s ease,border-color .3s ease;animation:story-enter .8s ease .25s backwards}
+.day-story:before{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(350px circle at var(--light-x,50%) var(--light-y,50%),#00e6d211,transparent 70%);opacity:var(--spotlight,0);transition:opacity .35s ease}
+.day-stages li{transition:background .25s ease}.stage-number{display:inline-block;transition:transform .3s var(--motion-ease),color .3s ease}
+.button{transition:background .2s ease,transform .3s var(--motion-ease),box-shadow .3s ease}
+.button span{display:inline-block;transition:transform .3s var(--motion-ease)}
+.workflow-choice .choice-arrow{transition:transform .3s var(--motion-ease),background .2s ease,color .2s ease}
+.workflow-panel:not([hidden]){animation:panel-enter .35s var(--motion-ease)}
+.capability-label{transition:transform .35s var(--motion-ease)}
+.capability{transition:border-color .35s ease,background-color .35s ease,opacity .45s ease,transform .45s var(--motion-ease)}
+.guide-cover{transition:transform .4s var(--motion-ease),box-shadow .4s var(--motion-ease)}
+@media(hover:hover) and (pointer:fine){
+ .button:hover{box-shadow:0 8px 22px #10141712}.button-teal:hover{box-shadow:0 8px 26px #00e6d229}.button:hover span{transform:translateX(3px)}.button:active{transform:translateY(0) scale(.985)}
+ .workflow-choice:hover .choice-arrow{transform:translateX(4px)}
+ .capability:hover{border-top-color:var(--fold);background-color:#f3f7f733}.capability:hover .capability-label{transform:translateX(5px)}
+ .day-stages li:hover{background:#00e6d205}.day-stages li:hover .stage-number{transform:translateY(-2px)}
+ .guide-cover:hover{transform:rotate(0) translateY(-5px);box-shadow:22px 28px 0 #26383b}
+}
+@media(min-width:851px) and (hover:hover) and (pointer:fine){.day-story{transform:perspective(1100px) translateY(10px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg))}.day-story.is-tracking{border-color:#638b8d;box-shadow:0 30px 75px #00000038;transition:transform .15s ease-out,box-shadow .4s ease,border-color .3s ease}}
+@keyframes hero-enter{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes story-enter{from{opacity:0}to{opacity:1}}
+@keyframes panel-enter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes ambient-drift{from{transform:translate(-1%,-1%) scale(1)}to{transform:translate(2%,1%) scale(1.04)}}
+@media(prefers-reduced-motion:reduce){.hero:before{animation:none}.hero-copy>*,.day-story,.workflow-panel:not([hidden]){animation:none}.day-story,.day-story.is-tracking{transform:none}.capability:hover .capability-label,.button:hover span,.workflow-choice:hover .choice-arrow,.day-stages li:hover .stage-number{transform:none}}
+@media print{.hero:before,.hero:after,.site-header:after{display:none}.hero-copy>*,.workflow-panel{animation:none!important;opacity:1;transform:none}}
