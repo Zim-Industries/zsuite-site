@@ -26,10 +26,9 @@ test('compact header uses the supplied one-shot mark without wrapping navigation
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
 });
 
-test('chapter copy reveals once without transforming its sticky frame or changing document scroll behavior',async({page})=>{
+test('existing capability rows reveal once without changing document scroll behavior',async({page})=>{
   await page.setViewportSize({width:1440,height:900});await page.goto('./');
-  const row=page.locator('.chapter-copy').first();
-  await expect(page.locator('.chapter-frame').first()).not.toHaveClass(/reveal-pending/);
+  const row=page.locator('.capability').first();
   await expect(row).toHaveClass(/reveal-pending/);
   await row.scrollIntoViewIfNeeded();
   await expect(row).not.toHaveClass(/reveal-pending/);
