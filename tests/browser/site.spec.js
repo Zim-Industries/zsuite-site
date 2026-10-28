@@ -52,6 +52,12 @@ for (const width of [320,390,820,1440]) {
     const errors=[];page.on('pageerror',error=>errors.push(error.message));
     page.on('response',response=>{if(response.status()>=400)errors.push(response.url()+':'+response.status());});
     await page.goto('./');await page.evaluate(()=>document.fonts.ready);
+    // Visit and settle the actual one-time reveals before inspecting final styling/full-page screenshots.
+    for (const item of await page.locator('.reveal-ready').all()) {
+      await item.evaluate(element=>element.scrollIntoView({behavior:'instant',block:'center'}));
+      await expect(item).not.toHaveClass(/reveal-pending/);
+      await expect(item).toHaveCSS('opacity','1');
+    }
     await page.locator('#guide').scrollIntoViewIfNeeded();
     await expect(page.locator('.guide-cover img')).toBeVisible();
     expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);

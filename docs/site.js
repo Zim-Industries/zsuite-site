@@ -62,3 +62,20 @@
     });
   });
 })();
+
+/* One-time, lightweight reveals; ordinary document scrolling remains unchanged. */
+(() => {
+  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.remove('reveal-pending');
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.section-heading, .capability, .support-list > div, .fit-columns > div').forEach(element => {
+    if (element.getBoundingClientRect().top < window.innerHeight - 24) return;
+    element.classList.add('reveal-ready', 'reveal-pending');
+    observer.observe(element);
+  });
+})();
