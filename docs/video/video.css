@@ -1,0 +1,17 @@
+@font-face{font-family:Inter;src:url(../assets/Inter-Regular.woff2) format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:Inter;src:url(../assets/Inter-SemiBold.woff2) format('woff2');font-weight:600;font-display:swap}
+:root{--ink:#101417;--teal:#00e6d2;--fold:#00bfaf;--muted:#536669;--line:#d5e0e0;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,Arial,sans-serif;color:var(--ink);background:#f8f8f7;-webkit-font-smoothing:antialiased}
+.page{width:min(1280px,calc(100% - 48px));margin:0 auto;padding:56px 0 72px}
+.wordmark{display:block;width:190px;height:auto}
+.eyebrow{display:flex;align-items:center;gap:12px;margin:40px 0 0;font-size:11px;font-weight:600;letter-spacing:.14em;color:#0a6f66}
+.rule{width:27px;height:2px;background:var(--fold)}
+h1{margin:16px 0 0;font-size:clamp(32px,4.4vw,56px);line-height:1.08;font-weight:600;letter-spacing:-.045em;text-wrap:balance}
+.lead{margin:18px 0 0;max-width:720px;font-size:16px;line-height:1.7;color:var(--muted)}
+.player{margin:40px 0 0}
+video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#101417;border-radius:10px;box-shadow:0 1px 0 var(--line),0 24px 60px rgba(16,20,23,.16)}
+figcaption{margin-top:16px;font-size:13px;line-height:1.6;color:var(--muted)}
+figcaption a{color:var(--ink);font-weight:600;text-underline-offset:.25em}
+a:focus-visible,video:focus-visible{outline:3px solid #008c80;outline-offset:4px}
+@media(max-width:600px){.page{width:calc(100% - 32px);padding:32px 0 48px}.wordmark{width:150px}.eyebrow{margin-top:28px}.lead{font-size:14px}.player{margin-top:28px}video{border-radius:6px}}
